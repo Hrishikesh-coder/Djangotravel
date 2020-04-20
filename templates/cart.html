@@ -1,0 +1,113 @@
+{% load static %}
+
+{% static 'images' as baseUrl %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Travello</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Travello template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{%static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+  
+    
+    <style>
+        body {
+            background: #fafafa;
+            color: #333333;
+            
+          }
+          
+          h1, h2, h3, h4, h5, h6 {
+            color: #444444;
+          }
+          
+          .bg-steel {
+            background-color: #5f788a;
+          }
+          
+          .site-header .navbar-nav .nav-link {
+            color: #cbd5db;
+          }
+          
+          .site-header .navbar-nav .nav-link:hover {
+            color: #ffffff;
+          }
+          
+          .site-header .navbar-nav .nav-link.active {
+            font-weight: 500;
+          }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+          <div class="container" style="height:100px;">
+            <a class="navbar-brand mr-4" href="{% url 'home' %}" style="font-size:50px; color:black; font-family:'Lato'; font-weight:bold; text-align: left;">Travello</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="/" style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">Home</a>
+                <a class="nav-item nav-link" href="/" style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">About</a>
+              </div>
+              <!-- Navbar Right Side -->
+              {% if user.is_authenticated %}
+              <div class="navbar-nav mr-auto">
+                <li style="margin-left: 50px; color:pink; font-family:Helvetica; font-size:20px; font-weight:bold;">Hello, {{user.first_name}}</li>
+            </div>
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url 'logout' %}" style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">Logout</a>
+              </div>
+              
+              
+              {% endif %}
+              
+              
+            </div>
+          </div>
+        </nav>
+      </header>
+    {% if cart.cart > 0 %}
+    <p>{{cart.cart}}</p>
+    <div style="padding-top:120px">
+        <div >
+            <img src="{{dest.img.url}}" alt="" style="width:50%;position:absolute;left:0px; ">
+            
+            {% if dest.price < 700 %}
+
+            <div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+            {% endif %}
+        </div>
+        
+    </div>
+
+    <h1 style='padding-top:10px;padding-left:770px;color:darkseagreen'>Your Cart Items : </h1>
+
+    <h2 style="padding-top:40px;padding-left:820px;color:maroon;font-weight:bold;font-size:70px;">{{dest.name}}</h2>
+    <h2 style="padding-top:40px;padding-left:850px;color:mediumslateblue;font-weight:bold;font-size:100px;">Price:</h2>
+    <h3 style="padding-top:40px;padding-left:900px;color:mediumslateblue;font-weight:bold;font-size:70px;">${{dest.price}}</h3>
+    <a  style="margin-top:10px;margin-left:20px;"href="{% url 'delete_cart' %}" role='button' class='btn btn-danger'>Delete items in cart</a>
+    <div style="display: inline-block;background-color: #9b9ea3;border-radius: 0.3cm;margin-left: 200px;height:200px;width:800px">
+        <h1>GRAND TOTAL( 1 item):</h1>	
+        <h2>${{cart.cart}}</h2>
+        <!--<center><input type="submit" name="checkout" value="PROCEED TO CHECKOUT" style="background-color: #ffe311;"></center>-->
+        <center><a href="{% url 'checkout' %}" style="background-color: #ffe311;text-decoration: none;color: black;padding: 10px;">PROCEED TO CHECKOUT</a></center>
+    </div>
+    {% else %}
+    <h1 style="margin-top:250px;text-align:center;">Looks like Your Cart is Empty!!</h1>
+    {% endif %}
+ </body>
+ </html>

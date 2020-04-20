@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{%static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{%static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'styles/responsive.css' %}">
+    <style>
+        body {
+            background: #fafafa;
+            color: #333333;
+            
+          }
+          
+          h1, h2, h3, h4, h5, h6 {
+            color: #444444;
+          }
+          
+          .bg-steel {
+            background-color: #5f788a;
+          }
+          
+          .site-header .navbar-nav .nav-link {
+            color: #cbd5db;
+          }
+          
+          .site-header .navbar-nav .nav-link:hover {
+            color: #ffffff;
+          }
+          
+          .site-header .navbar-nav .nav-link.active {
+            font-weight: 500;
+          }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top">
+          <div class="container" style="height:100px;">
+            <a class="navbar-brand mr-4" href="{% url 'home' %}" style="font-size:50px; color:black; font-weight:bold; text-align: left;">Travello</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="/" style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">Home</a>
+                <a class="nav-item nav-link" href="about" style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">About</a>
+              </div>
+              <!-- Navbar Right Side -->
+              {% if user.is_authenticated %}
+              <div class="navbar-nav mr-auto">
+                <li style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">Hello, {{user.first_name}}</li>
+            </div>
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url 'logout' %}" style="margin-left: 50px; color:black; font-family:Helvetica; font-size:20px; font-weight:bold;">Logout</a>
+              </div>
+              
+              
+              {% endif %}
+              
+              
+            </div>
+          </div>
+        </nav>
+      </header>
+    <h1 style='margin-top:120px;color:black;font-weight:bold;'>A BIG THANKS TO ALL!!</h1>
+    <p style='padding-top:50px;font-weight:bold;padding-left:15px;'>I would like to thank the following people for contributing towards this project.Without their continous help,this project would have been incomplete:</p>
+    <ul>
+        <li style='padding-top:50px;color:black;padding-left:25px;'><b>Sajjad Ahmed Shaaz</b>:This guy introduced me to the huge world of programming .Hence, half of the credit of my building this website goes to him . A big thanks to him!!
+        <li style='padding-top:30px;color:black;padding-left:25px;'><b>All of my users</b>:Without you guys, my website is nothing. A big thanks for visiting this website . You guys rock !!</li>
+        <li style='padding-top:30px;color:black;padding-left:25px;'><b>Colorlib</b>:Some of the code for the home page of the website is borrowed from the Colorlib website</li>
+    </ul>
+
+</body>
+</html>
